@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+}
+
+header {
+    display: grid;  
+    justify-content: center;
+
+}
+
+h1 {
+
+    text-align: center;
+}
+
+main {
+    
+}
+
+footer {
+
+}
+
+
+.board{
+    width: 80%;
+    margin: 50px auto;
+    
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    margin: 5px;
+
+}
+
+.boardSquare {
+    width: auto;
+    height: 200px;
+    
+
+}
+
+.playerName {
+
+    color: deepskyblue;
+}
+
+.empty{
+    border: 1px solid white;
+    background-color: black;
+
+}
+
+.claimedPlayer1 {
+
+background-color: green;
+
+}
+
+.claimedPlayer2 {
+background-color: blue;
+
+}
+
+.start {
+
+}
+
+
+
+
+
+
+
