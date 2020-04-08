@@ -4,8 +4,11 @@ var player2Squares = document.querySelectorAll('.claimedPlayer2');
 
 var title = document.querySelector('h1');
 var squareSelectionMessage = document.querySelector('h3');
+var startNewBtn = document.querySelector('button');
 
 var numTurns = 0;
+var player = document.querySelector('.playerName');
+var playerName = "";
 var winner = null;
 
 boardSquaresArr = Array.from(boardSquares);
@@ -20,49 +23,60 @@ var checkWinner = function checkWinner (){
 
     //var winnerClass = checkHorizontalWin();
 
-    if (checkHorizontalWin() === "boardSquare claimedPlayer1"){
+    if (checkHorizontalWin() === "boardSquare claimedPlayer1" || checkVerticalWin() === "boardSquare claimedPlayer1" || checkDiagonalWin() === "boardSquare claimedPlayer1"){
         winner = "Player 1";
-        squareSelectionMessage.textContent = "is the winner!";
-    } else if (checkHorizontalWin() === "boardSquare claimedPlayer2"){
+    } else if (checkHorizontalWin() === "boardSquare claimedPlayer2" || checkVerticalWin() === "boardSquare claimedPlayer2" || checkDiagonalWin() === "boardSquare claimedPlayer2"){
         winner = "Player 2";
     } else {
         winner = null;
     }
 
-    console.log(winner);
+    // checks if it is a draw (no more turns left and no winner) or win or to keep playing
+    if (winner === null && numTurns === 9){
+        squareSelectionMessage.textContent = "It's a draw!";
+    } else if (winner === "Player 1" ||  winner === "Player 2"){
+        //numTurns <= 9 &&
+        squareSelectionMessage.textContent = `${playerName} Wins!`;
+    }
 
 }
 
-//checks if square has already been claimed when clicked
+//checks if the game should continue based on if there is a winner or not 
 var handleTurn = function handleTurn (event) {
 
-    if (winner === null){
 
-        if (event.target.classList.contains('empty')) {
-            claimSquare(event.target);
-        } else {
-            squareSelectionMessage.textContent = "pick another square, this one has been claimed";
-        }
+    //checks if square has already been claimed when clicked
+    if (winner === null && event.target.classList.contains('empty')) {
+        claimSquare(event.target);
+        squareSelectionMessage.textContent = "Pick a square to claim";
+
+
     } else {
-        squareSelectionMessage.textContent = "Player X Wins!"
+        squareSelectionMessage.textContent = "pick another square, this one has been claimed";
     }
 
     numTurns++;
 
-    checkWinner();   
+    checkWinner();  
+
+ //debugger;
     
 }
 
 //checks whose turn it is and therefor who is claiming the square
 var claimSquare = function claimSquare (){
 
-   if (numTurns%2 === 0) {
-    claimSquareP1(event);
+    if (numTurns%2 === 0) {
+        claimSquareP1(event);
+        playerName = "Caramello";
 
     } else {
         claimSquareP2(event);
-
+        playerName = "Salted Caramel";
     }
+
+    player.textContent = playerName;
+
 
 }
 
@@ -82,7 +96,7 @@ var claimSquareP2 = function claimSquareP2(event){
 
 //checks if a player has won with a horizontal match (row index is the same)
 
-var checkRowClass = function checkRowClass (rowNum){
+var checkSquareClass = function checkSquareClass (rowNum){
     
    // debugger;
 
@@ -94,25 +108,86 @@ var checkRowClass = function checkRowClass (rowNum){
     
     });
 
+    //debugger;
+
     return squareClassNames;
 }
 
-var checkRowClassNamesMatch = function checkRowClassNamesMatch (classNames){
+// checks if the class names of the 3 squares in any ROW match
+var checkRowClassNamesMatch = function checkRowClassNamesMatch (classNamesArr){
 
-    var classNameMatch = [];
+    var classNameMatch = "";
 
-    classNames.forEach(function (row,rowIndex){
+    classNamesArr.forEach(function (row,rowIndex){
 
 
-        if (classNames[rowIndex][0] === classNames[rowIndex][1] && classNames[rowIndex][1] === classNames[rowIndex][2]){
+        if (classNamesArr[rowIndex][0] === classNamesArr[rowIndex][1] && classNamesArr[rowIndex][1] === classNamesArr[rowIndex][2] && classNamesArr[rowIndex][0] !== "boardSquare empty"){
 
           
-            classNameMatch.push(classNames[rowIndex][0]);
+            classNameMatch = classNamesArr[rowIndex][0];
         } 
 
     });
     //debugger;
-        return classNameMatch[0];
+        return classNameMatch;
+
+}
+
+// checks if the class names of the 3 squares in any COLOUMN match
+var checkColumnClassNamesMatch = function checkColumnClassNamesMatch (classNamesArr){
+
+    var classNameMatch = [];
+
+        classNamesArr.forEach(function (row,rowIndex){
+
+                classNameMatch.push(classNamesArr[rowIndex][0]);
+
+            });
+
+
+
+    // classNamesArr.forEach(function (row,rowIndex){
+
+    //     classNameMatch.push(classNamesArr[rowIndex][1]);
+
+    // });
+
+    // classNamesArr.forEach(function (row,rowIndex){
+
+    //     classNameMatch.push(classNamesArr[rowIndex][2]);
+
+    // });
+
+    console.log("check", classNameMatch);
+
+    //forEach to check each column
+
+
+        if (classNameMatch[0] === classNameMatch[1] && classNameMatch[0] === classNameMatch[2] && classNameMatch[0] !== "boardSquare empty"){
+            
+            return classNameMatch[0];
+
+        } else {
+            return "";
+        }
+
+    //debugger;
+
+}
+
+var getClassNames = function getClassNames(){
+
+    var classNames =[];
+
+    //creates an array of classNames
+
+gridPositions.forEach(function(row,i){
+    classNames.push(checkSquareClass(i));
+
+});
+
+    console.log(classNames);
+    return classNames
 
 }
 
@@ -120,55 +195,79 @@ var checkRowClassNamesMatch = function checkRowClassNamesMatch (classNames){
 
 var checkHorizontalWin = function checkHorizontalWin (){
     
-    var rowClassNames =[];
+    classNames = getClassNames();
 
-        //creates an array of classNames
-
-    gridPositions.forEach(function(row,i){
-        rowClassNames.push(checkRowClass(i));
-    });
-
-    //console.log(rowClassNames);
-
-    var matchingClassName = checkRowClassNamesMatch(rowClassNames);
+    var matchingClassName = checkRowClassNamesMatch(classNames);
 
     console.log(matchingClassName);    
     return matchingClassName;
 
 }
+
+   //checks if a player has won with a vertical match (column index of matching classNames is the same)
+
+var checkVerticalWin = function checkVerticalWin (){
     
-        
+    classNames = getClassNames();
 
+    var matchingClassName = checkColumnClassNamesMatch(classNames);
 
+    console.log("2", matchingClassName);    
+    return matchingClassName;
 
-
-
-// var checkVerticalWin = function checkVerticalWin (){
-
-//     return gridPosition[i][i].className;
-// }
+}
 
 // //checks if a player has won with a diagonal match(row and column index of each one are different)
-// var checkDiagonalWin = function checkDiagonalWin (){
 
-//     return gridPosition[i][i].className;
-// }
+var checkDiagonalWin = function checkDiagonalWin (){
+    
+    classNames = getClassNames();
 
-//checks who won based on class name of squares in a row
-// var evaluateWinner = function evaluateWinner (){
+    matchingClassName = "";
 
-//     checkHorizontalWin();
-//     checkVerticalWin();
-//     checkDiagonalWin();
+    if (classNames[0][0] === classNames[1][1] && classNames[0][0] === classNames[2][2]){
+        console.log("diagonal win left to right");
+        matchingClassName = classNames[0][0];
+    }
 
-//     if (gridPosition[i][i].className = "claimedPlayer1"){
-//         winner = "Player 1";
-//     } else if (gridPosition[i][i].className = "claimedPlayer2") {
-//         winner = "Player 2";
-//     } else {
-//         winner = "null";
-//     }
-//     return winner;
+    if (classNames[2][0] === classNames[1][1] && classNames[2][0] === classNames[0][2]){
+        console.log("diagonal win right to left");
+        matchingClassName = classNames[2][0];
+    }
+
+        //checksColumnClassNamesMatch(classNames)
+    
+    console.log("3", matchingClassName);    
+    return matchingClassName;
+
+}
+
+var startNewGame = function startNewGame (){
+
+    //debugger;
+    gridPositions.forEach(function (arr, row){
+
+        gridPositions[row].forEach(function (square){
+
+            square.classList.remove("claimedPlayer1");
+            square.classList.remove("claimedPlayer2");
+            square.classList.add("empty"); 
+
+            //WHY does this make the row disappear at the end of each forEach!??
+            //square.className = "boardsquare empty"; 
+
+        });
+
+    });
+
+}
+
+// var resetClassName = function resetClassName (arr){
+
+//     arr.forEach(function(square,i){
+//         square[i].className = ;
+//     });
+
 // }
 
 
@@ -186,6 +285,8 @@ gridPositions[1].forEach(element => {
 gridPositions[2].forEach(element => {
     element.addEventListener('click', handleTurn);
 });
+
+startNewBtn.addEventListener('click', startNewGame);
 
 
 

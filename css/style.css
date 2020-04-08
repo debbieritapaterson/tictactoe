@@ -2,9 +2,21 @@
     box-sizing: border-box;
 }
 
+body {
+
+    /* background-color: moccasin; */
+    background-image: url(../images/hands.jpg);
+    background-size: cover;
+
+}
+
 header {
-    display: grid;  
-    justify-content: center;
+    /* display: grid;  
+    justify-content: center; */
+
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: white;
 
 }
 
@@ -23,8 +35,10 @@ footer {
 
 
 .board{
-    width: 80%;
+    width: 650px;
     margin: 50px auto;
+    border: 10px solid black;
+    background-color: olivedrab;
     
 }
 
@@ -45,7 +59,7 @@ footer {
 
 .playerName {
 
-    color: deepskyblue;
+    color: burlywood;
 }
 
 .empty{
@@ -56,17 +70,22 @@ footer {
 
 .claimedPlayer1 {
 
-background-color: green;
-
+/* background-color: green; */
+background-image: url("../images/caramel.png");
+background-size: cover;
 }
 
 .claimedPlayer2 {
-background-color: blue;
+background-image: url("../images/coconut.png");
+background-size: cover;
+
 
 }
 
 .start {
-
+ width: 200px;
+ background-color: peachpuff;
+ border-radius: 10px;
 }
 
 
