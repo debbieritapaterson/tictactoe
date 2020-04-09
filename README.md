@@ -20,14 +20,14 @@ JS
 1. Identify page elements and create shortcuts to relevant elements that need to be manipulated later on (grid squares, header elements etc)
 2. Add event listeners to the grid squares so that when a user clicks on one of them, we can define what happens
 3. Define functions to:
-  1. Handle a turn - check if the game should continue (based on number of turns and if a winner has been declared) and let a player claim a square if it is empty.
-  2. Claim a square - how a square will change when a square is 'claimed' or a player puts their peice their
-  3. Create Player Turns - switch betweens 2 players (so they can take turns) and identify which player's turn it currently and therefore which peice will display when a square is clicked on
-  4. Check what peice are currently on the board and if there are 3 in a row either vertically, horizontally or diagonally.
-  5. Check if there is a winner
-  6. Check who the winner is and display who the winner is
-  7. Refine instruction messaging to show what the user should do e.g pick a square, pick a different square or restart the game
-  8. Restart the game - reset all the squares to unclaimed with no peices
+  - Handle a turn - check if the game should continue (based on number of turns and if a winner has been declared) and let a player claim a square if it is empty.
+  - Claim a square - how a square will change when a square is 'claimed' or a player puts their peice their
+  - Create Player Turns - switch betweens 2 players (so they can take turns) and identify which player's turn it currently and therefore which peice will display when a square is clicked on
+  - Check what peice are currently on the board and if there are 3 in a row either vertically, horizontally or diagonally.
+  - Check if there is a winner
+  - Check who the winner is and display who the winner is
+  - Refine instruction messaging to show what the user should do e.g pick a square, pick a different square or restart the game
+  - Restart the game - reset all the squares to unclaimed with no peices
 
 
 ##INSTALLATION,
