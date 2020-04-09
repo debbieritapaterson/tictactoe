@@ -283,12 +283,13 @@ var startNewGame = function startNewGame (){
             //WHY does this make the row disappear at the end of each forEach!??
             //square.className = "boardsquare empty"; 
 
-            winMessage.innerHTML = `It is <span class="playerName">Caramello</span>'s Turn`;
-            squareSelectionMessage.textContent = `Pick a square to claim`;
-
         });
 
     });
+
+    winMessage.innerHTML = `It is <span class="playerName">Caramello</span>'s Turn`;
+    squareSelectionMessage.textContent = `Pick a square to claim`;
+    numTurns = 0;
 
 }
 

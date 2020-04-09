@@ -7,6 +7,10 @@ body {
     /* background-color: moccasin; */
     background-image: url(../images/hands.jpg);
     background-size: cover;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    text-align: center;
+
 
 }
 
@@ -14,14 +18,10 @@ header {
     /* display: grid;  
     justify-content: center; */
 
-    text-align: center;
-    font-family: 'Nunito', sans-serif;
-    color: white;
 
 }
 
 h1 {
-
     text-align: center;
 }
 
@@ -70,24 +70,50 @@ footer {
 
 .claimedPlayer1 {
 
-background-image: url("../images/choc-nuts.png");
-background-size: cover; 
-background-repeat: no-repeat;
+    background-image: url("../images/choc-nuts.png");
+    background-size: cover; 
+    background-repeat: no-repeat;
 
 }
 
 .claimedPlayer2 {
-background-image: url("../images/chocswirl.png");
-background-size: 100% 100%;
+    background-image: url("../images/chocswirl.png");
+    background-size: 100% 100%;
 
 
 
 }
 
 .start {
- width: 200px;
- background-color: peachpuff;
- border-radius: 10px;
+    width: 200px;
+    background-color: peachpuff;
+    border-radius: 10px;
+}
+
+.chocolate-options{
+    margin: 50px auto;
+    border: 10px solid black;
+    background:white;
+    width: 650px;
+    display:grid;
+    grid-template-rows: 150px 150px;
+}
+
+.chocolateRow{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    margin: 5px;
+    
+}
+
+.chocolate{
+    background:white;
+    width: auto;
+}
+
+.chocolateImg{
+    width: 100%;
 }
 
 
