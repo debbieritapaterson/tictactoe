@@ -1,11 +1,15 @@
 # chocolate tictactoe
 
+##The Game:
+Pick your chocolate peice and fight against a friend to win the chocolate box in this chocolate themed tic tac toe.
 
-##technologies used, 
+COMING SOON: Pick your own chocolate feature. Play with the defaults for now.
 
-html for building the elements on the page including the game board and peices
-css for creating the chocolate box theme and styling
-javascript to identify players, take turns and evaluate a winner when there are 3 peices in a row either horizontally, vertically or diagonally
+##Technologies Used, 
+
+- HTML for building the elements on the page including the game board and peices
+- CSS for creating the chocolate box theme and styling
+- JAVASCRIPT to identify players, take turns and evaluate a winner when there are 3 peices in a row either horizontally, vertically or diagonally
 
 ##the approach taken
 
@@ -27,7 +31,7 @@ JS
   8. Restart the game - reset all the squares to unclaimed with no peices
 
 
-##installation instructions,
+##INSTALLATION,
 Visit the github page to play the game https://debbieritapaterson.github.io/tictactoe/ OR download and open the html file in your web browser https://github.com/debbieritapaterson/tictactoe
 
 
