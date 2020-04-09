@@ -113,7 +113,9 @@ footer {
 }
 
 .chocolateImg{
-    width: 100%;
+    /* width: 100%; */
+    background-image: url("../images/hokeypokey.png");
+    background-size: cover; 
 }
 
 
