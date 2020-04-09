@@ -3,6 +3,7 @@ var player1Squares = document.querySelectorAll('.claimedPlayer1');
 var player2Squares = document.querySelectorAll('.claimedPlayer2');
 
 var title = document.querySelector('h1');
+var winMessage = document.querySelector('h2');
 var squareSelectionMessage = document.querySelector('h3');
 var startNewBtn = document.querySelector('button');
 
@@ -38,7 +39,8 @@ var checkWinner = function checkWinner (){
         squareSelectionMessage.textContent = "It's a draw!";
     } else if (winner === "Player 1" ||  winner === "Player 2"){
         //numTurns <= 9 &&
-        squareSelectionMessage.textContent = `${playerName} Wins!`;
+        winMessage.textContent = `${playerName} Wins!`;
+        squareSelectionMessage.textContent = `Game Over`;
     }
 
 }
@@ -54,7 +56,7 @@ var handleTurn = function handleTurn (event) {
 
 
     } else {
-        squareSelectionMessage.textContent = "pick another square, this one has been claimed";
+        squareSelectionMessage.textContent = "Pick another square, this one has been claimed";
     }
 
     numTurns++;
@@ -280,6 +282,9 @@ var startNewGame = function startNewGame (){
 
             //WHY does this make the row disappear at the end of each forEach!??
             //square.className = "boardsquare empty"; 
+
+            winMessage.innerHTML = `It is <span class="playerName">Caramello</span>'s Turn`;
+            squareSelectionMessage.textContent = `Pick a square to claim`;
 
         });
 
