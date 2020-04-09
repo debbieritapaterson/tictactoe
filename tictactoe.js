@@ -25,8 +25,10 @@ var checkWinner = function checkWinner (){
 
     if (checkHorizontalWin() === "boardSquare claimedPlayer1" || checkVerticalWin() === "boardSquare claimedPlayer1" || checkDiagonalWin() === "boardSquare claimedPlayer1"){
         winner = "Player 1";
+
     } else if (checkHorizontalWin() === "boardSquare claimedPlayer2" || checkVerticalWin() === "boardSquare claimedPlayer2" || checkDiagonalWin() === "boardSquare claimedPlayer2"){
         winner = "Player 2";
+
     } else {
         winner = null;
     }
@@ -122,7 +124,6 @@ var checkRowClassNamesMatch = function checkRowClassNamesMatch (classNamesArr){
 
 
         if (classNamesArr[rowIndex][0] === classNamesArr[rowIndex][1] && classNamesArr[rowIndex][1] === classNamesArr[rowIndex][2] && classNamesArr[rowIndex][0] !== "boardSquare empty"){
-
           
             classNameMatch = classNamesArr[rowIndex][0];
         } 
@@ -136,42 +137,66 @@ var checkRowClassNamesMatch = function checkRowClassNamesMatch (classNamesArr){
 // checks if the class names of the 3 squares in any COLOUMN match
 var checkColumnClassNamesMatch = function checkColumnClassNamesMatch (classNamesArr){
 
-    var classNameMatch = [];
+    var classNameMatchFlipped = [[],[],[]];
+    var classNameMatch = "";
 
-        classNamesArr.forEach(function (row,rowIndex){
+    //flips the array so that the column class names are now rows in a new array
+    classNamesArr.forEach(function (row,rowIndex){
 
-                classNameMatch.push(classNamesArr[rowIndex][0]);
-
-            });
-
+        classNameMatchFlipped[rowIndex].push(classNamesArr[0][rowIndex]);
 
 
-    // classNamesArr.forEach(function (row,rowIndex){
+        });
 
-    //     classNameMatch.push(classNamesArr[rowIndex][1]);
+    classNamesArr.forEach(function (row,rowIndex){
 
-    // });
+        classNameMatchFlipped[rowIndex].push(classNamesArr[1][rowIndex]);
 
-    // classNamesArr.forEach(function (row,rowIndex){
+    });
+    
+    classNamesArr.forEach(function (row,rowIndex){
 
-    //     classNameMatch.push(classNamesArr[rowIndex][2]);
+        classNameMatchFlipped[rowIndex].push(classNamesArr[2][rowIndex]);
 
-    // });
+    });
 
-    console.log("check", classNameMatch);
+        console.log(classNameMatchFlipped);
+
+
+    //console.log("check", classNameMatch);
 
     //forEach to check each column
 
-
-        if (classNameMatch[0] === classNameMatch[1] && classNameMatch[0] === classNameMatch[2] && classNameMatch[0] !== "boardSquare empty"){
+    // if (classNameMatch[0][0] === classNameMatch[0][1] && classNameMatch[0][0] === classNameMatch[0][2] && classNameMatch[0][0] !== "boardSquare empty"){
             
-            return classNameMatch[0];
+    //     return classNameMatch[0][0];
 
-        } else {
-            return "";
-        }
+    // }   else if (classNameMatch[1][0] === classNameMatch[1][1] && classNameMatch[1][0] === classNameMatch[1][2] && classNameMatch[0][1] !== "boardSquare empty"){
+            
+    //         return classNameMatch[0][1];
 
-    //debugger;
+    //     } else if (classNameMatch[2][0] === classNameMatch[2][1] && classNameMatch[2][0] === classNameMatch[2][2] && classNameMatch[0][2] !== "boardSquare empty"){
+            
+    //         return classNameMatch[0][2];
+        
+    //     } else {
+
+    //         return "";
+    //     }
+
+    classNameMatchFlipped.forEach(function (row,rowIndex){
+
+
+            if (classNameMatchFlipped[rowIndex][0] === classNameMatchFlipped[rowIndex][1] && classNameMatchFlipped[rowIndex][1] === classNameMatchFlipped[rowIndex][2] && classNameMatchFlipped[rowIndex][0] !== "boardSquare empty"){
+    
+                classNameMatch = classNameMatchFlipped[rowIndex][0];
+            } 
+        });
+
+        console.log(classNameMatch);
+        return classNameMatch;
+
+        //debugger;
 
 }
 
@@ -186,7 +211,7 @@ gridPositions.forEach(function(row,i){
 
 });
 
-    console.log(classNames);
+    //console.log(classNames);
     return classNames
 
 }
@@ -199,7 +224,7 @@ var checkHorizontalWin = function checkHorizontalWin (){
 
     var matchingClassName = checkRowClassNamesMatch(classNames);
 
-    console.log(matchingClassName);    
+    //console.log(matchingClassName);    
     return matchingClassName;
 
 }
@@ -212,7 +237,7 @@ var checkVerticalWin = function checkVerticalWin (){
 
     var matchingClassName = checkColumnClassNamesMatch(classNames);
 
-    console.log("2", matchingClassName);    
+    //console.log("2", matchingClassName);    
     return matchingClassName;
 
 }
@@ -225,19 +250,19 @@ var checkDiagonalWin = function checkDiagonalWin (){
 
     matchingClassName = "";
 
-    if (classNames[0][0] === classNames[1][1] && classNames[0][0] === classNames[2][2]){
+    if (classNames[0][0] === classNames[1][1] && classNames[0][0] === classNames[2][2] && classNames[0][0] !== "boardSquare empty"){
         console.log("diagonal win left to right");
         matchingClassName = classNames[0][0];
     }
 
-    if (classNames[2][0] === classNames[1][1] && classNames[2][0] === classNames[0][2]){
+    if (classNames[2][0] === classNames[1][1] && classNames[2][0] === classNames[0][2] && classNames[2][0] !== "boardSquare empty"){
         console.log("diagonal win right to left");
         matchingClassName = classNames[2][0];
     }
 
         //checksColumnClassNamesMatch(classNames)
     
-    console.log("3", matchingClassName);    
+    //console.log("3", matchingClassName);    
     return matchingClassName;
 
 }
