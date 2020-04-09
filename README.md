@@ -11,8 +11,7 @@ COMING SOON: Pick your own chocolate feature. Play with the defaults for now.
 - CSS for creating the chocolate box theme and styling
 - JAVASCRIPT to identify players, take turns and evaluate a winner when there are 3 peices in a row either horizontally, vertically or diagonally
 
-##the approach taken
-
+##APPROACH
 HTML/CSS
 1. Build the core elements on the page: header (to display messages about turns, wins and instructions), the grid and the peices (divs).
 2. Link images to represent the board peices and display on the board, give the board some definition so it is visible to the users.
