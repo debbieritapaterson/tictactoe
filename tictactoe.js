@@ -202,16 +202,15 @@ var checkColumnClassNamesMatch = function checkColumnClassNamesMatch (classNames
 
 }
 
+    //creates an array of classNames
 var getClassNames = function getClassNames(){
 
     var classNames =[];
 
-    //creates an array of classNames
-
-gridPositions.forEach(function(row,i){
+    gridPositions.forEach(function(row,i){
     classNames.push(checkSquareClass(i));
 
-});
+    });
 
     //console.log(classNames);
     return classNames
@@ -261,8 +260,6 @@ var checkDiagonalWin = function checkDiagonalWin (){
         console.log("diagonal win right to left");
         matchingClassName = classNames[2][0];
     }
-
-        //checksColumnClassNamesMatch(classNames)
     
     //console.log("3", matchingClassName);    
     return matchingClassName;
@@ -293,14 +290,6 @@ var startNewGame = function startNewGame (){
 
 }
 
-// var resetClassName = function resetClassName (arr){
-
-//     arr.forEach(function(square,i){
-//         square[i].className = ;
-//     });
-
-// }
-
 
 //condense into nested forEach()
 gridPositions[0].forEach(element => {
@@ -318,18 +307,6 @@ gridPositions[2].forEach(element => {
 });
 
 startNewBtn.addEventListener('click', startNewGame);
-
-
-
-
-
-
-// gridPositions[0][0].className === gridPositions[0][1].className &&gridPositions[0][2].className)
-    
-        // gridPositions[1][0].className === gridPositions[1][1].className &&  gridPositions[1][2].className)
-    
-        // gridPositions[2][0].className === gridPositions[2][1].className &&    gridPositions[2][2].className)
-        
 
        
                
